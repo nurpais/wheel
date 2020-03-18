@@ -1,31 +1,110 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="sections">
+      <div class="bg-overlay"></div>
+      <app-section
+        v-for="(movie, index) in movies"
+        :key="index"
+        :year="movie.year"
+        :budget="movie.budget"
+        :time="movie.time"
+        :title="movie.title"
+        :img="movie.img"
+        :text="movie.text"
+      />
     </div>
-    <router-view />
+    <app-wheel />
+    <div class="controls">
+      <div class="btn-group">
+        <img @click="control('prev')" src="./assets/images/back.svg" alt="" />
+        <img @click="control('next')" src="./assets/images/next.svg" alt="" />
+      </div>
+      <div class="turn">
+        <img src="./assets/images/turn.png" alt="" class="turn-img" />
+        TURN THE REEL
+      </div>
+    </div>
   </div>
 </template>
 
+<script>
+import AppWheel from "./components/AppWheel";
+import AppSection from "./components/AppSection";
+import Anime from "./anime";
+
+import movies from "./movies";
+
+export default {
+  name: "app",
+  components: {
+    AppWheel,
+    AppSection
+  },
+  data() {
+    return {
+      movies
+    };
+  },
+  mounted() {
+    Anime.setWheel();
+  },
+  methods: {
+    control(dir) {
+      Anime.setWheel(dir);
+    }
+  }
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.sections {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-#nav {
-  padding: 30px;
+.bg-overlay {
+  background-image: url("./assets/images/bg.png"),
+    url("./assets/images/rect.png");
+  background-position: center;
+  background-repeat: no-repeat, space;
+  background-size: cover, 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+.controls {
+  position: absolute;
+  left: 10vw;
+  bottom: 20px;
+  z-index: 998;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 48vw;
+  .btn-group {
+    width: 2vw;
+    display: flex;
+    img {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  .turn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      margin-bottom: 10px;
     }
   }
 }
