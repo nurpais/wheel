@@ -11,9 +11,10 @@
         :title="movie.title"
         :img="movie.img"
         :text="movie.text"
+        :url="movie.url"
       />
     </div>
-    <app-wheel />
+    <app-wheel :movies="movies" />
     <div class="controls">
       <div class="btn-group">
         <img @click="control('prev')" src="./assets/images/back.svg" alt="" />
@@ -31,7 +32,7 @@
 import AppWheel from "./components/AppWheel";
 import AppSection from "./components/AppSection";
 import Anime from "./anime";
-
+let anime = new Anime();
 import movies from "./movies";
 
 export default {
@@ -46,11 +47,11 @@ export default {
     };
   },
   mounted() {
-    Anime.setWheel();
+    anime.setWheel();
   },
   methods: {
     control(dir) {
-      Anime.setWheel(dir);
+      anime.control(dir);
     }
   }
 };
@@ -77,7 +78,7 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .controls {
@@ -90,6 +91,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 48vw;
+  @media (max-width: 820px) {
+    width: 78vw;
+  }
   .btn-group {
     width: 2vw;
     display: flex;

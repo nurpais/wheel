@@ -10,7 +10,7 @@
         <div class="section-title">{{ title }}</div>
         <div class="section-movie-text">{{ text }}</div>
 
-        <a href="#" class="read-more">Read More</a>
+        <a :href="url" class="read-more">Read More</a>
       </div>
     </div>
   </div>
@@ -19,8 +19,7 @@
 <script>
 export default {
   name: "app-section",
-  props: ["year", "budget", "title", "time", "text", "img"],
-  mounted() {}
+  props: ["year", "budget", "title", "time", "text", "img", "url"]
 };
 </script>
 
@@ -54,14 +53,25 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 1rem;
+  @media (max-width: 820px) {
+    width: 100%;
+  }
 }
 .section-text-content {
   width: 510px;
   text-align: center;
+  font-size: 1.6vw;
+  @media (max-width: 650px) {
+    font-size: 16px;
+  }
 }
 .section-title {
-  font-size: 48px;
+  font-size: 4vw;
   font-weight: 700;
+  @media (max-width: 650px) {
+    font-size: 28px;
+  }
 }
 
 .section-movie-text {
