@@ -10,8 +10,6 @@ export default class Anime {
     let sectionsText = document.querySelectorAll(".section-text");
     let wheelItem = document.querySelectorAll(".wheel-item .bg");
 
-
-
     TweenMax.set(sections, { display: "none" });
     TweenMax.set(sectionsBg, { opacity: 0 });
     TweenMax.set(sectionsText, { opacity: 0 });
@@ -27,14 +25,14 @@ export default class Anime {
   }
   setWheel() {
     let wheel = document.querySelector(".wheel-wrapper");
-    TweenMax.from(wheel, 1, { x: 500, y: 500 })
-    TweenMax.from(wheel, 2, { rotation: 360 })
+    TweenMax.from(wheel, 1, { x: 500, y: 500 });
+    TweenMax.from(wheel, 2, { rotation: 360 });
     this.runText(iter);
     const self = this;
     this.drag = Draggable.create(".wheel-wrapper", {
       type: "rotation",
       throwProps: true,
-      onDragEnd: function () {
+      onDragEnd: function() {
         // Set current section
         iter = Math.round(this.endRotation / 36);
         if (iter < 0) {
@@ -46,10 +44,18 @@ export default class Anime {
         // Show current section
         self.runText(lastNum[lastNum.length - 1], true);
       },
-      snap: function (value) {
+      snap: function(value) {
         return Math.round(value / 36) * 36;
       }
     });
+  }
+  startLoader() {
+    let loader = document.querySelector(".loader");
+    TweenMax.to(loader, 0.3, { opacity: 0, delay: 2 });
+    TweenMax.set(loader, { display: "none", delay: 2.3 });
+    setTimeout(() => {
+      this.setWheel();
+    }, 1800);
   }
 
   control(dir) {

@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <div class="loader">
+      <h2>
+        The 25 Highest-Grossing <br />
+        Movies of All Time Worldwide
+      </h2>
+    </div>
     <div class="sections">
       <div class="bg-overlay"></div>
       <app-section
@@ -47,7 +53,7 @@ export default {
     };
   },
   mounted() {
-    anime.setWheel();
+    anime.startLoader();
   },
   methods: {
     control(dir) {
@@ -58,6 +64,25 @@ export default {
 </script>
 
 <style lang="scss">
+.loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  color: #fff;
+  font-size: 4vw;
+  z-index: 9999;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    font-family: "Source Sans Pro";
+    font-weight: 700;
+  }
+}
 .sections {
   position: absolute;
   top: 0;
