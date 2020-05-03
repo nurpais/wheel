@@ -51,11 +51,26 @@ export default class Anime {
   }
   startLoader() {
     let loader = document.querySelector(".loader");
-    TweenMax.to(loader, 0.3, { opacity: 0, delay: 2 });
-    TweenMax.set(loader, { display: "none", delay: 2.3 });
-    setTimeout(() => {
-      this.setWheel();
-    }, 1800);
+    let loaderTitle = document.querySelector(".loader h2");
+    let loaderIcon = document.querySelector(".loader-icon");
+
+    TweenMax.to(loaderTitle, 2, { opacity: 1, delay: 1 });
+    TweenMax.to(loaderIcon, 2, { opacity: 1, delay: 1.5 });
+
+    window.addEventListener("load", () => {
+      TweenMax.to(loaderTitle, 1, {
+        opacity: 0,
+        delay: 3,
+        onComplete: () => {
+          this.setWheel();
+          TweenMax.set(loader, { display: "none" });
+        }
+      });
+      TweenMax.to(loaderIcon, 1, {
+        opacity: 0,
+        delay: 3
+      });
+    });
   }
 
   control(dir) {

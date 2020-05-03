@@ -67,7 +67,7 @@ export default {
   }
 }
 .section-title {
-  font-size: 4vw;
+  font-size: 3.4vw;
   font-weight: 700;
   @media (max-width: 650px) {
     font-size: 28px;

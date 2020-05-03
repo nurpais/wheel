@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <div class="loader">
-      <h2>
-        The 25 Highest-Grossing <br />
-        Movies of All Time Worldwide
-      </h2>
-    </div>
+    <app-loader />
     <div class="sections">
       <div class="bg-overlay"></div>
       <app-section
@@ -37,6 +32,8 @@
 <script>
 import AppWheel from "./components/AppWheel";
 import AppSection from "./components/AppSection";
+import AppLoader from "./components/AppLoader";
+
 import Anime from "./anime";
 let anime = new Anime();
 import movies from "./movies";
@@ -45,7 +42,8 @@ export default {
   name: "app",
   components: {
     AppWheel,
-    AppSection
+    AppSection,
+    AppLoader
   },
   data() {
     return {
