@@ -1,5 +1,9 @@
 # cinema
 
+## Demo 
+
+https://cinema-bf2b6.web.app/
+
 ## Project setup
 ```
 npm install
