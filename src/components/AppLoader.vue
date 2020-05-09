@@ -1,7 +1,7 @@
 <template>
   <div class="loader">
     <h2>
-      The 25 Highest-Grossing
+      The 10 Highest-Grossing
       <br />Movies of All Time Worldwide
     </h2>
     <img class="loader-icon" src="../assets/images/filming.svg" alt="Loader" />
